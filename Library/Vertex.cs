@@ -11,11 +11,13 @@ namespace Library
 
         public Vertex(T item){
             _item = item;
+            neighbors = new();
         }
 
         public virtual void AddNeighbor(Vertex<T> neighbor)
         {
-            neighbors.Add(neighbor);
+            Neighbors.Add(neighbor);
+            neighbor.Neighbors.Add(this);
         }
 
         public virtual bool HasNeighbor(Vertex<T> neighbor)
@@ -27,6 +29,47 @@ namespace Library
             else
             {
                 return false;
+            }
+        }
+
+        public List<Vertex<T>> Neighbors
+        {
+            get
+            {
+                return neighbors;
+            }
+            set
+            {
+                neighbors = value;
+            }
+        }
+
+        public bool Visited
+        {
+            get
+            {
+                return visited;
+            }
+            set
+            {
+                visited = value;
+            }
+        }
+
+        public virtual string Print(Vertex<T> vertex)
+        {
+            string toReturn = vertex.ToString() + ": \n";
+            if(vertex.neighbors != null)
+            {
+                foreach(Vertex<T> neighbor in vertex.Neighbors)
+                {
+                    toReturn += neighbor + "\n";
+                }
+                return toReturn;
+            }
+            else
+            {
+                return toReturn;
             }
         }
     }
