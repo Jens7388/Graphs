@@ -32,7 +32,7 @@ namespace Library
 
         public string DepthFirstSearch(Vertex<T> root)
         {
-            string toReturn ="";
+            string toReturn = "";
             if(!root.Visited)
             {
                 toReturn += root + "\n";
@@ -40,15 +40,36 @@ namespace Library
 
                 foreach(Vertex<T> neighbor in root.Neighbors)
                 {
-                   toReturn += DepthFirstSearch(neighbor);
+                    toReturn += DepthFirstSearch(neighbor);
                 }
-                return toReturn;
+                
             }
-            else
-            {
-                return "";
-            }
+            return toReturn;
         }
 
+        public string BreadthFirstSearch(Vertex<T> root)
+        {
+            string toReturn = "";
+            Queue<Vertex<T>> queue = new Queue<Vertex<T>>();
+
+            root.Visited = true ;
+            toReturn += root + "\n";
+            queue.Enqueue(root);
+
+            while(queue.Count > 0)
+            {
+                Vertex<T> current = queue.Dequeue();
+                foreach(Vertex<T> neighbor in current.Neighbors)
+                {
+                    if(!neighbor.Visited)
+                    {
+                        toReturn += neighbor + "\n";
+                        neighbor.Visited = true;
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+            return toReturn;
+        }
     }
 }

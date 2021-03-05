@@ -1,6 +1,7 @@
 ﻿using Library;
 
 using System;
+using System.Collections.Generic;
 
 namespace App
 {
@@ -15,16 +16,26 @@ namespace App
             Vertex<string> billund = new("Billund");
             Vertex<string> odense = new("Odense");
 
+            kastrup.AddNeighbor(aalborg);
             kastrup.AddNeighbor(tirstrup);
             kastrup.AddNeighbor(ronne);
-            kastrup.AddNeighbor(aalborg);
             kastrup.AddNeighbor(billund);
 
             aalborg.AddNeighbor(ronne);
             aalborg.AddNeighbor(billund);
             aalborg.AddNeighbor(odense);
 
-            Console.WriteLine(kastrup.Print(kastrup));
+            Graph<string> graph = new(new List<Vertex<string>>() {kastrup , odense, ronne, aalborg, billund, tirstrup });
+            Console.WriteLine("BFS:");
+            Console.WriteLine(graph.BreadthFirstSearch(kastrup));
+
+            foreach(Vertex<string> vertex in graph.Vertices)
+            {
+                vertex.Visited = false;
+            }
+
+            Console.WriteLine("DFS:");
+            Console.WriteLine(graph.DepthFirstSearch(kastrup));
         }
     }
 }

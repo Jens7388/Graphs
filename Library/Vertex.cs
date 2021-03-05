@@ -55,22 +55,5 @@ namespace Library
                 visited = value;
             }
         }
-
-        public virtual string Print(Vertex<T> vertex)
-        {
-            string toReturn = vertex.ToString() + ": \n";
-            if(vertex.neighbors != null)
-            {
-                foreach(Vertex<T> neighbor in vertex.Neighbors)
-                {
-                    toReturn += neighbor + "\n";
-                }
-                return toReturn;
-            }
-            else
-            {
-                return toReturn;
-            }
-        }
     }
 }
