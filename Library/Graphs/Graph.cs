@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Library
+namespace Library.Graphs
 {
-    public class Graph<T>
+    public abstract class Graph<T>
     {
         protected List<Vertex<T>> _vertices;
-
-        public Graph()
-        {
-
-        }
-
-        public Graph(List<Vertex<T>> vertices)
-        {
-            _vertices = vertices;
-        }
 
         public virtual List<Vertex<T>> Vertices
         {
@@ -30,7 +22,7 @@ namespace Library
             }
         }
 
-        public string DepthFirstSearch(Vertex<T> root)
+        public virtual string DepthFirstSearch(Vertex<T> root)
         {
             string toReturn = "";
             if(!root.Visited)
@@ -42,17 +34,17 @@ namespace Library
                 {
                     toReturn += DepthFirstSearch(neighbor);
                 }
-                
+
             }
             return toReturn;
         }
 
-        public string BreadthFirstSearch(Vertex<T> root)
+        public virtual string BreadthFirstSearch(Vertex<T> root)
         {
             string toReturn = "";
             Queue<Vertex<T>> queue = new Queue<Vertex<T>>();
 
-            root.Visited = true ;
+            root.Visited = true;
             toReturn += root + "\n";
             queue.Enqueue(root);
 
