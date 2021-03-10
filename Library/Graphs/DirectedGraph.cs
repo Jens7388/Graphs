@@ -65,9 +65,19 @@ namespace Library.Graphs
                 {
                     toReturn += DepthFirstSearch(neighbor);
                 }
-
             }
             return toReturn;
-        }     
+        }
+
+        
+
+        public void Dijkstra()
+        {
+
+            foreach(Vertex<T> vertex in Vertices)
+            {
+
+            }
+        }
     }
 }
